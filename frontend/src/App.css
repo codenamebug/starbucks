@@ -1,9 +1,17 @@
 * {
   box-sizing: border-box;
-}
-
-body {
   margin: 0;
   padding: 0;
+}
+a {
+  vertical-align: baseline;
+  text-decoration: none;
+}
+body {
+  border: 0;
+  vertical-align: baseline;
+  list-style: none;
+}
+ul, li {
   list-style: none;
 }
