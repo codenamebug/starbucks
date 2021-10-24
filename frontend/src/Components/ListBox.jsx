@@ -21,11 +21,11 @@ const ListBox = () => {
   }, []);
 
   return (
-    <div>
-      {data.map((coffee) => {
+    <React.Fragment>
+      {data.map((coffee, idx) => {
         for (let key in coffee) {
           return (
-            <React.Fragment>
+            <React.Fragment key={idx + 1}>
               <ListTitle title={key} />
               <FlexBox>
                 {coffee[key].map((obj) => (
@@ -36,7 +36,7 @@ const ListBox = () => {
           );
         }
       })}
-    </div>
+    </React.Fragment>
   );
 };
 
