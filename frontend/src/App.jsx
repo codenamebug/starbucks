@@ -1,10 +1,10 @@
-import "./App.css";
-import ListBox from "./Components/ListBox";
+import './App.css';
+import FilterBox from './Components/FilterBox';
 
 function App() {
   return (
     <div>
-      <ListBox />
+      <FilterBox />
     </div>
   );
 }
