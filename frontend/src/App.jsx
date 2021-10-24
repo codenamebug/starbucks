@@ -1,10 +1,10 @@
-import "./App.css";
-import ListBox from "./Components/ListBox";
+import './App.css';
+import Drink from './Pages/Drink'
 
 function App() {
   return (
     <div>
-      <ListBox />
+      <Drink />
     </div>
   );
 }
