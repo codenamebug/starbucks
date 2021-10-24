@@ -51,7 +51,6 @@ const Span = styled.span`
 const ListTitle = ({ title }) => {
   return (
     <Box>
-      <input type="checkbox" />
       <Title href={""}>{title}</Title>
       <Icon>
         <Img src="https://image.istarbucks.co.kr/common/img/menu/logo_decaf.png"></Img>

@@ -1,11 +1,11 @@
+import React from "react";
 import FilterBox from "../Components/FilterBox";
 
 const Drink = () => {
-
   return (
-    <div>
-      <FilterBox menu='coffees'/>
-    </div>
+    <React.Fragment>
+      <FilterBox menu="coffees" />
+    </React.Fragment>
   );
 };
 
