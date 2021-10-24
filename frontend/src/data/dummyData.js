@@ -21,7 +21,7 @@ const dummyData = {
           "id": 4,
           "name": "에스프레소 마키아또",
           "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[25]_20210415144211211.jpg"
-        }]
+        }],
     },
     {
       "coldBrew": [

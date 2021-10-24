@@ -25,6 +25,10 @@ const Lable = styled.div`
   color: #444;
   line-height: 54px;
   text-align: center;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  // white-space: nowrap;
 `;
 
 const ListImg = ({ name, src }) => {
