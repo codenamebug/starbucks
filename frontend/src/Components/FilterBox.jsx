@@ -5,12 +5,19 @@ import theme1 from "../Images/theme1.jpg";
 import theme2 from "../Images/theme2.jpg";
 import theme3 from "../Images/theme3.jpg";
 import theme4 from "../Images/theme4.png";
+import ListBox from '../Components/ListBox'
 
-const FilterBox = () => {
+const FilterBox = ({menu}) => {
   const [clickedCategory, setClickedCategory] = useState(true);
   const [clickedTheme, setClickedTheme] = useState(false);
 
-  const handleClick = (e) => {
+  const [isAll, setIsAll] = useState(false);
+  const [isEsspresso, setIsEsspresso] = useState(false);
+  const [isColdBrew, setIsColdBrew] = useState(false);
+
+  const coffeeStatus = { all: isAll, esspresso: isEsspresso, coldBrew: isColdBrew };
+
+  const handleButtons = (e) => {
     const target = e.target.textContent;
     if (target === "카테고리") {
       setClickedCategory(true);
@@ -21,7 +28,27 @@ const FilterBox = () => {
     }
   };
 
+  const handleAll = () => {
+    setIsAll(!isAll);
+    setIsEsspresso(false);
+    setIsColdBrew(false);
+  }
+
+  const handleEsspresso = () => {
+    setIsEsspresso(!isEsspresso);
+    setIsAll(false);
+  }
+
+  const handleColdBrew = () => {
+    setIsColdBrew(!isColdBrew);
+    setIsAll(false);
+  }
+
+
+
+
   return (
+    <>
     <section className="filterBox">
       <div className="filterBox__wrapper">
         <div className="title__and__button">
@@ -33,13 +60,13 @@ const FilterBox = () => {
         {/* <div className="border"></div> */}
         <div className="button__wrapper">
           <button
-            onClick={handleClick}
+            onClick={handleButtons}
             className={`category ${clickedCategory ? "active" : "unactive"}`}
           >
             카테고리
           </button>
           <button
-            onClick={handleClick}
+            onClick={handleButtons}
             className={`theme ${clickedTheme ? "active" : "unactive"}`}
           >
             테마
@@ -49,19 +76,20 @@ const FilterBox = () => {
           className="category__wrapper"
           style={clickedCategory ? { display: "flex" } : { display: "none" }}
         >
-          <button className="item">
-            <div className="item__checkbox"></div>
-            <span className="item__name">전체 상품보기</span>
+          <button className="item" onClick={handleAll}>
+            <div className={isAll ? 'item__checkbox__focus' : 'item__checkbox'}></div>
+            <span className="item__name">all</span>
           </button>
-          <button className="item">
-            <div className="item__checkbox"></div>
-            <span className="item__name">머그</span>
+          <button className="item" onClick={handleEsspresso}>
+            <div className={isEsspresso ? 'item__checkbox__focus' : 'item__checkbox'}></div>
+            <span className="item__name">esspresso</span>
           </button>
-          <button className="item">
-            <div className="item__checkbox"></div>
-            <span className="item__name">글라스</span>
+          <button className="item" onClick={handleColdBrew}>
+            <div className={isColdBrew ? 'item__checkbox__focus' : 'item__checkbox'}></div>
+            <span className="item__name">coldBrew</span>
           </button>
-          <button className="item">
+          
+          {/* <button className="item">
             <div className="item__checkbox"></div>
             <span className="item__name">플라스틱 텀블러</span>
           </button>
@@ -84,7 +112,7 @@ const FilterBox = () => {
           <button className="item">
             <div className="item__checkbox"></div>
             <span className="item__name">패키지 티(티바나)</span>
-          </button>
+          </button> */}
         </div>
         <div
           className="theme__wrapper"
@@ -97,6 +125,8 @@ const FilterBox = () => {
         </div>
       </div>
     </section>
+    <ListBox coffeeStatus={coffeeStatus} menu={menu}/>
+    </>
   );
 };
 

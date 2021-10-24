@@ -13,12 +13,13 @@ const FlexBox = styled.div`
   // flex-wrap: wrap;
 `;
 
-const ListBox = () => {
-  const [data, setData] = useState(dummyData.coffees);
-
-  useEffect(() => {
-    console.log("fetch");
-  }, []);
+const ListBox = ({ coffeeStatus, menu }) => {
+  const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   fetch(`https://b9b568de-8e10-4ed6-9472-98aa10a75efe.mock.pstmn.io/api/${menu}`)
+  //   .then(res => res.json())
+  //   .then(data => setData(data[menu]))
+  // }, []);
 
   return (
     <div>

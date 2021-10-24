@@ -1,10 +1,10 @@
 import './App.css';
-import FilterBox from './Components/FilterBox';
+import Drink from './Pages/Drink'
 
 function App() {
   return (
     <div>
-      <FilterBox />
+      <Drink />
     </div>
   );
 }

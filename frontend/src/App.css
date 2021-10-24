@@ -94,6 +94,7 @@ button {
 
 .category__wrapper {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .item {
@@ -108,12 +109,18 @@ button {
   margin-right: 8px;
 }
 
-.item:focus .item__checkbox {
+.item__checkbox__focus {
+  height: 12px;
+  width: 12px;
+  border: 1px solid #DDDDDD;
+  margin-right: 8px;
   background-image: url(/src/Images/check.png);
   background-size: contain;
+  background-repeat: none;
 }
 
 .item__name {
+  display: block;
   font-size: 14px;
 }
 
