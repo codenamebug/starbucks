@@ -7,9 +7,6 @@ const FlexBox = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 1rem;
-  // display: flex;
-  // justify-content: space-between;
-  // flex-wrap: wrap;
 `;
 
 const ListBox = ({ data, menu }) => {
