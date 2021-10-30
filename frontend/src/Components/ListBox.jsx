@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ListImg from "./ListImg";
 import ListTitle from "./ListTitle";
 import styled from "styled-components";
-import dummyData from "../data/dummyData.js";
 
 const FlexBox = styled.div`
   display: grid;
@@ -13,22 +12,20 @@ const FlexBox = styled.div`
   // flex-wrap: wrap;
 `;
 
-const ListBox = ({ data }) => {
+const ListBox = ({ data, menu }) => {
   return (
     <React.Fragment>
-      {data.map((coffee, idx) => {
-        for (let key in coffee) {
-          return (
-            <React.Fragment key={idx + 1}>
-              <ListTitle title={key} />
-              <FlexBox>
-                {coffee[key].map((obj) => (
-                  <ListImg name={obj.name} src={obj.image} key={obj.id} />
-                ))}
-              </FlexBox>
-            </React.Fragment>
-          );
-        }
+      {data.map((category, idx) => {
+        return (
+          <React.Fragment key={idx + 1}>
+            <ListTitle title={category.type} />
+            <FlexBox>
+              {category.products.map((item) => (
+                <ListImg name={item.name} src={item.image} key={item.id} />
+              ))}
+            </FlexBox>
+          </React.Fragment>
+        );
       })}
     </React.Fragment>
   );

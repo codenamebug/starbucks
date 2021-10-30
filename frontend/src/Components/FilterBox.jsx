@@ -6,29 +6,30 @@ import theme2 from "../Images/theme2.jpg";
 import theme3 from "../Images/theme3.jpg";
 import theme4 from "../Images/theme4.png";
 import ListBox from "../Components/ListBox";
+import dummyData from "../data/dummyData";
 
 const FilterBox = ({ menu }) => {
   const [clickedCategory, setClickedCategory] = useState(true);
   const [clickedTheme, setClickedTheme] = useState(false);
 
   const [isAll, setIsAll] = useState(false);
-  const [isEsspresso, setIsEsspresso] = useState(false);
+  const [isEspresso, setIsEspresso] = useState(false);
   const [isColdBrew, setIsColdBrew] = useState(false);
 
-  const [data, setData] = useState([]);
-  const [filterData, setFilterData] = useState(data);
+  const [data, setData] = useState(dummyData.products[0].subcategories);
+  const [filterData, setFilterData] = useState([]);
 
-  useEffect(() => {
-    fetch(
-      `https://b9b568de-8e10-4ed6-9472-98aa10a75efe.mock.pstmn.io/api/${menu}`
-    )
-      .then((res) => res.json())
-      .then((data) => setData(data[menu]));
-  }, []);
+  // useEffect(() => {
+  //   fetch(
+  //     `https://b9b568de-8e10-4ed6-9472-98aa10a75efe.mock.pstmn.io/api/${menu}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => setData(data[menu]));
+  // }, []);
 
   const coffeeStatus = {
     all: isAll,
-    esspresso: isEsspresso,
+    espresso: isEspresso,
     coldBrew: isColdBrew,
   };
 
@@ -51,33 +52,29 @@ const FilterBox = ({ menu }) => {
     }
 
     setIsAll(!isAll);
-    setIsEsspresso(false);
+    setIsEspresso(false);
     setIsColdBrew(false);
   };
 
-  const handleEsspresso = () => {
-    const filtered = data.filter((obj) => {
-      for (let key in obj) {
-        if (key === "esspresso") {
-          return !coffeeStatus[key];
-        }
-        return coffeeStatus[key];
+  const handleEspresso = () => {
+    const filtered = data.filter((item) => {
+      if (item.type === "espresso") {
+        return !coffeeStatus[item.type];
       }
+      return coffeeStatus[item.type];
     });
 
     setFilterData(filtered);
-    setIsEsspresso(!isEsspresso);
+    setIsEspresso(!isEspresso);
     setIsAll(false);
   };
 
   const handleColdBrew = () => {
-    const filtered = data.filter((obj) => {
-      for (let key in obj) {
-        if (key === "coldBrew") {
-          return !coffeeStatus[key];
-        }
-        return coffeeStatus[key];
+    const filtered = data.filter((item) => {
+      if (item.type === "coldBrew") {
+        return !coffeeStatus[item.type];
       }
+      return coffeeStatus[item.type];
     });
 
     setFilterData(filtered);
@@ -120,13 +117,13 @@ const FilterBox = ({ menu }) => {
               ></div>
               <span className="item__name">all</span>
             </button>
-            <button className="item" onClick={handleEsspresso}>
+            <button className="item" onClick={handleEspresso}>
               <div
                 className={
-                  isEsspresso ? "item__checkbox__focus" : "item__checkbox"
+                  isEspresso ? "item__checkbox__focus" : "item__checkbox"
                 }
               ></div>
-              <span className="item__name">esspresso</span>
+              <span className="item__name">espresso</span>
             </button>
             <button className="item" onClick={handleColdBrew}>
               <div
@@ -173,13 +170,7 @@ const FilterBox = ({ menu }) => {
           </div>
         </div>
       </section>
-      <ListBox
-        data={filterData}
-        isAll={isAll}
-        isEsspresso={isEsspresso}
-        isColdBrew={isColdBrew}
-        menu={menu}
-      />
+      <ListBox data={filterData} menu={menu} />
     </>
   );
 };
